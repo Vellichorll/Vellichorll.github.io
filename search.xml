@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>表达式求值</title>
+    <title>表达式求值(Expression Evaluation)</title>
     <url>/2022/10/24/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/</url>
-    <content><![CDATA[<h1 id="表达式求值-Expression-Evaluation"><a href="#表达式求值-Expression-Evaluation" class="headerlink" title="表达式求值(Expression Evaluation)"></a>表达式求值(Expression Evaluation)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>机器很难处理我们平时使用的中缀表达式(运算符位于操作数中间),因需要对其进行优先级的判定.而后缀表达式(逆波兰表达式)无需考虑运算符的优先级,只需按照运算符从左到右的出现顺序依次进行运算,即可得到表达式的值.</p>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>机器很难处理我们平时使用的中缀表达式(运算符位于操作数中间),因需要对其进行优先级的判定.而后缀表达式(逆波兰表达式)无需考虑运算符的优先级,只需按照运算符从左到右的出现顺序依次进行运算,即可得到表达式的值.</p>
 <blockquote>
 <p>中缀表达式5*(6&#x2F;2+7)的后缀表达式为 6 2 &#x2F; 7 + 5 *</p>
 </blockquote>
