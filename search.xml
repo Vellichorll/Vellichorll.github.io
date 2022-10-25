@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>无处不在的抉择之选择结构</title>
+    <title>无处不在的抉择之选择控制结构</title>
     <url>/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure/</url>
     <content><![CDATA[<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>实际问题中需要根据情况的不同选择相应的处理方法,例如:</p>
 <ul>
@@ -12,7 +12,7 @@
 <li><p>根据判别式求一元二次方程的根</p>
 </li>
 </ul>
-<p>类似上述需要进行”分类讨论”的情形,即为分支结构所适用的场景.<br>对这些需分情况处理的问题进行抽象,首先要描述<strong>判断条件(condition)</strong>,然后使用分支结构根据判断条件对不同的情况进行相应处理.</p>
+<p>类似上述需要进行”分类讨论”的情形,即为选择控制结构所适用的场景.<br>对这些需分情况处理的问题进行抽象,首先要描述<strong>判断条件(condition)</strong>,然后使用分支选择结构根据判断条件对不同的情况进行相应处理.</p>
 <h4 id="判断条件的表达"><a href="#判断条件的表达" class="headerlink" title="判断条件的表达"></a>判断条件的表达</h4><ul>
 <li><p>C语言使用 <strong>表达式(Expression)</strong> 对判断条件进行描述.<br>  具体而言:  </p>
 <ul>
@@ -84,9 +84,9 @@
 </ul>
 </li>
 </ul>
-<h4 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h4><p>  根据需要处理情况的数量确定分支的数目,分支结构可分为:</p>
+<h4 id="分支选择结构"><a href="#分支选择结构" class="headerlink" title="分支选择结构"></a>分支选择结构</h4><p>  根据需要处理情况的数量确定分支的数目,分支结构可分为:</p>
 <ul>
-<li><p>单分支结构</p>
+<li><p>单分支选择结构</p>
   <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//statements</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  表示如果满足条件condition,则执行花括号内的若干条语句statements.<br>  由花括号&quot;{}&quot;括起来的若干条语句称为语句块(也称为复合语句),语句块中仅有一条语句时,花括号可省略.</p>
 <p>  e.g 若a &gt; b则交换两者的值</p>
@@ -96,7 +96,7 @@
 </blockquote>
 <p>  上述代码可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; b) temp = a, a = b, b = temp;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>双分支结构</p>
+<li><p>双分支选择结构</p>
 <ul>
 <li><p>if else</p>
   <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//statement1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//statement2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -111,7 +111,7 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isOdd</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (num % <span class="number">2</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实际上该函数还可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isOdd</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(num % <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>多分支结构</p>
+<li><p>多分支选择结构</p>
 <ul>
 <li><p>级联式的if语句:else-if </p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(exp1)</span><br><span class="line">&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(exp2)</span><br><span class="line">&#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(exp3)</span><br><span class="line">&#123;</span><br><span class="line">    statement3;</span><br><span class="line">&#125;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123;</span><br><span class="line">    statement_n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
