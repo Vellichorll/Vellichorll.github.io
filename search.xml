@@ -9,12 +9,7 @@
 </blockquote>
 <p>从需求而言,人类发明计算机的目的是解决问题.但计算机的思维方式不同于人类,最能体现计算机的思维方式的就是循环.<br>编程的本质是人类以计算机的思维去思考和解决特定问题,而这一过程需要借助编程语言.因此编程语言作为一种工具,实现了人与计算机的”沟通”.<br>###循环控制结构 </p>
 <ul>
-<li><p>循环的本质就是在满足特定条件的前提下,重复地执行某一过<br>程.循环结构具体实现了循环的过程,根据循环次数是否确定可将其分为<strong>计数控制的循环</strong>和<strong>条件控制的循环</strong>.<br>C语言提供三种循环语句(for, while, do-while)实现循环结构.<br>不管是哪种语句,都可将其理解为if加goto:</p>
-<ul>
-<li>首先先判断表达式所描述的给定条件</li>
-<li>若满足条件,则跳转循环体中执行具体的若干条语句</li>
-<li>执行完循环体中的语句后,再跳转回到条件判断.<br>若满足条件,重复上述过程;不满足条件则结束循环.</li>
-</ul>
+<li><p>循环的本质就是在满足特定条件的前提下,重复地执行某一过<br>程.循环结构具体实现了循环的过程,根据循环次数是否确定可将其分为计数控制的循环和条件控制的循环.<br>C语言提供三种循环语句(for, while, do-while)实现循环结构.</p>
 </li>
 <li><p>while语句<br>  基本形式为:</p>
   <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(expression)</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -119,7 +114,8 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Prgromming Language</category>
+        <category>Programming Language</category>
+        <category>C</category>
       </categories>
       <tags>
         <tag>C</tag>
@@ -251,6 +247,7 @@
 ]]></content>
       <categories>
         <category>Programmming Language</category>
+        <category>C</category>
       </categories>
       <tags>
         <tag>C</tag>
