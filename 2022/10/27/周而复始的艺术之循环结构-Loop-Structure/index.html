@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/laptop-code-solid.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/laptop-code-solid.svg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于C语言循环结构的理解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="周而复始的艺术之循环结构(Loop Structure)">
+<meta property="og:url" content="http://example.com/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84-Loop-Structure/index.html">
+<meta property="og:site_name" content="山枕的博客">
+<meta property="og:description" content="关于C语言循环结构的理解">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-10-27T10:21:59.000Z">
+<meta property="article:modified_time" content="2022-10-27T19:34:06.241Z">
+<meta property="article:author" content="Vellichor">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84-Loop-Structure/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84-Loop-Structure/","path":"2022/10/27/周而复始的艺术之循环结构-Loop-Structure/","title":"周而复始的艺术之循环结构(Loop Structure)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>周而复始的艺术之循环结构(Loop Structure) | 山枕的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">山枕的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vellichor</p>
+  <div class="site-description" itemprop="description">I live an abusrd life invariably.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84-Loop-Structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vellichor">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="山枕的博客">
+      <meta itemprop="description" content="I live an abusrd life invariably.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="周而复始的艺术之循环结构(Loop Structure) | 山枕的博客">
+      <meta itemprop="description" content="关于C语言循环结构的理解">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          周而复始的艺术之循环结构(Loop Structure)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-27 18:21:59" itemprop="dateCreated datePublished" datetime="2022-10-27T18:21:59+08:00">2022-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-10-28 03:34:06" itemprop="dateModified" datetime="2022-10-28T03:34:06+08:00">2022-10-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Prgromming-Language/" itemprop="url" rel="index"><span itemprop="name">Prgromming Language</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">关于C语言循环结构的理解</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>首先思考这样一个问题：人与计算机的区别体现在哪?</p>
+<blockquote>
+<p>人类并不擅长机械地重复行动,常常因产生厌倦而出现错误,但是更擅于思考与辨识.<br>而由人类发明的计算机则擅长按照一定的规律重复执行某些过程</p>
+</blockquote>
+<p>从需求而言,人类发明计算机的目的是解决问题.但计算机的思维方式不同于人类,最能体现计算机的思维方式的就是循环.<br>编程的本质是人类以计算机的思维去思考和解决特定问题,而这一过程需要借助编程语言.因此编程语言作为一种工具,实现了人与计算机的”沟通”.<br>###循环控制结构 </p>
+<ul>
+<li><p>循环的本质就是在满足特定条件的前提下,重复地执行某一过<br>程.循环结构具体实现了循环的过程,根据循环次数是否确定可将其分为<strong>计数控制的循环</strong>和<strong>条件控制的循环</strong>.<br>C语言提供三种循环语句(for, while, do-while)实现循环结构.<br>不管是哪种语句,都可将其理解为if加goto:</p>
+<ul>
+<li>首先先判断表达式所描述的给定条件</li>
+<li>若满足条件,则跳转循环体中执行具体的若干条语句</li>
+<li>执行完循环体中的语句后,再跳转回到条件判断.<br>若满足条件,重复上述过程;不满足条件则结束循环.</li>
+</ul>
+</li>
+<li><p>while语句<br>  基本形式为:</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(expression)</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>括号中的表达式描述循环条件,以控制循环是否执行,每次循环开始前都会进行条件判断.</li>
+<li>花括号与其包括的若干条语句构成循环体</li>
+</ul>
+</li>
+<li><p>do-while语句<br>  基本形式:</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;<span class="keyword">while</span>(expression);</span><br></pre></td></tr></table></figure>
+<p>  括号中的表达式描述循环条件,在第一次循环结束以控制循环是否执行,第一次循环结束后才进行条件判断.<br>  也就是说,该循环语句不管开始时是否满足循环条件,都会执行一次循环体中的内容,然后再进行循环条件的判断.</p>
+</li>
+<li><p>for语句<br>  基本形式:</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(expr1; expr2; expr3)</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  e.g</p>
+<p>  括号中包括三个表达式,它们之间用分号隔开,这三个表达式均可省略.</p>
+<ul>
+<li>表达式1仅在循环开始时执行一次初始化</li>
+<li>表达式2描述循环条件,控制循环是否执行,每次循环开始前都会进行条件判断</li>
+<li>表达式3在每次循环结束后进行相应的更新</li>
+<li>  三者共同决定了循环的执行次数,可它们统称为控制表达式.逗号运算符实现了在控制表达式中包含多条语句,使得for循环更为灵活(大多数人都更倾向使用for循环)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>三种循环语句的比较(如何选择)</p>
+<ul>
+<li>大部分情况的循环都可使用这for语句和while语句进行描述.一般而言,习惯使用for语句表示循环次数确定的计数控制的循环,使用while语句表达循环次数未知的条件控制的循环.<ul>
+<li><p>e.g 输入数字n,求从1到n的前n项和sum<br>显然这是一个计数控制的循环,是一个累加的过程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    sum += i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>e.g 对于一个数字num, 从个位开始获取其每一位上的数字(用空格隔开).</p>
+<p>  分析：<br>  对于num,通过num % 10可获取其最低位digit(个位)<br>  然后通过num &#x2F;&#x3D; 10将num整体向右移一位,这样最低位的前一位(十位)就变成了最低位,再通过num % 10即可该位.<br>  因此,只需重复上述过程直至num为0即可获得num的每一位数字.<br>  上述的分析过程类似于<u>数学归纳法</u>,分析通过处理的问题时都可以采用该方法<br>  可使用循环描述该过程,该循环是条件控制的循环</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(num)</span><br><span class="line">&#123;</span><br><span class="line">    digit = num % <span class="number">10</span>;</span><br><span class="line">    num /= <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可写为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(; num; num /= <span class="number">10</span>)</span><br><span class="line">&#123;</span><br><span class="line">    digit = num % <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>for和while语句表示的循环都属于当型循环(先判断条件再执行循环体),两者是等价的,因此不必刻意区分该循环是计数控制循环还是条件控制循环.</p>
+</li>
+<li>而do-while循环属于直到型循环:先执行循环体,再判断条件.do-while的实用性远不如for和while,其适用于至少执行一次循环的情况.</li>
+<li>总结:<br>实际使用过程中不必区分计数控制循环和条件控制循环来选择使用for还是while,使用两者均可描述,但是for语句的形式更加灵活.只需要根据循环的执行方式(当型循环or直到型循环)选择使用for&#x2F;while还是do-while即可.</li>
+</ul>
+</li>
+<li><p>辅助循环的跳转控制语句</p>
+<ul>
+<li>goto语句<br>该语句更倾向于底层语言.其容易造成不必要的混乱,因此谨慎使用或者放弃使用.</li>
+</ul>
+<p> C语言中更多使用的是由goto语句的特殊形式:<br> break语句和continue语句.</p>
+<ul>
+<li>break语句<br>通常与if搭配使用,在特定条件下跳出本层循环.用于结束本次循环<br>switch case语句中单独使用表示跳出当前分支</li>
+<li>continue语句<br>通常与if搭配使用,在特定条件下跳转至循环体的末尾.用于于跳过本次循环,开始下一次循环.</li>
+</ul>
+</li>
+<li><p>嵌套循环<br> 在实际应用中,单层循环是远远不够的,需要在循环体中再包含若干个循环以形成<strong>多层循环</strong>,才能对问题进行有效处理.这里的多层循环就是嵌套循环.</p>
+<ul>
+<li>嵌套循环的执行过程:<br> 该过程可理解为从最外层到最内层,循环的优先级逐级增加:<br> 最外层循环的优先级最低,最内层的优先级最高.<br> 因此多层循环的执行时先由外层进入内层,在内层循环全部执行完成后再执行外层.<br> 因此外层循环就像从全局角度进行整体感知,而内层循环则是上负责每一个部分的具体实现.</li>
+</ul>
+<p>  实践出真知,对于反馈性极强的编程自然也不例外,可以通过练习加深对循环过程的理解:</p>
+<ul>
+<li><p>输入一个数字n,计算从1到n每一个数字的阶乘和<br>  分析：</p>
+<ul>
+<li>阶乘和是将每一个数字的阶乘相加后可得到结果,这是一个累加的过程.因此可用外层循环表示将n个数字的阶乘相加</li>
+<li>具体到每一个数字阶乘计算:计算该数字的阶乘是一个累乘的过程,因此用内层循环计算每个数字的阶乘</li>
+</ul>
+<p>   实现：<br>   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;  <span class="comment">// 最终的阶乘和</span></span><br><span class="line">   <span class="type">long</span> <span class="type">long</span> fact = <span class="number">1</span>; <span class="comment">// 每一个数字的阶乘</span></span><br><span class="line">   <span class="type">int</span> n;</span><br><span class="line">   <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= i; j++)</span><br><span class="line">       &#123;</span><br><span class="line">           fact *= j;</span><br><span class="line">       &#125;</span><br><span class="line">       sum += fact;</span><br><span class="line">       fact = <span class="number">1</span>;       <span class="comment">//重置fact以计算下一个数字的阶乘</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%I64d\n&quot;</span>, sum);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<p>   按行列处理问题</p>
+<ul>
+<li>输入一个数字n,输出相应的金字塔图案<br>  样例输入(Sample Input):<blockquote>
+<p>5</p>
+</blockquote>
+<p>  样例输出(Sample Output):</p>
+<blockquote>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>  &amp;nbsp;&amp;nbsp;ABCBA<br>  &amp;nbsp;ABCDCBA<br>   ABCDEDCBA</p>
+</blockquote>
+<p>  分析:</p>
+<ul>
+<li><p>外层循环表示每一行的输出:<br>先输出该行的图案,然后再输出换行符 共输出n行</p>
+</li>
+<li><p>内层循环表示当前行每一列的输出：<br> (1) 先输出空格,第i行输出n-i个空格<br> (2) 再输出字母,同一行中的所有字母都是对称的:<br> 第i行输出2*i-1个字母,第i行的对称中心为第i列,对称中心处的字母为’A’+i-1<br> 先从A开始顺序输出i个字母,再从对称中心处的字母开始逆序输出i-1个字母</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 顺序输出字母</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 逆序输出字母</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt; i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据对称性可将输出字母部分的代码进行简化<br>第j列的字母与其到对称中心(第i列)的距离abs(j - i)有关: 第j列应输出的字母为’A’+ i - 1 - abs(j - i)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * i - <span class="number">1</span>; j++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - <span class="built_in">abs</span>(j - i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - <span class="built_in">abs</span>(j - i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该题可进一步升级为菱形</p>
+<p>样例输入(Sample Input):</p>
+<blockquote>
+<p>5</p>
+</blockquote>
+<p>样例输出(Sample Output):</p>
+<blockquote>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>&amp;nbsp;&amp;nbsp;ABCBA<br>&amp;nbsp;ABCDCBA<br> ABCDEDCBA<br> &amp;nbsp;ABCDBA<br> &amp;nbsp;&amp;nbsp;ABCBA<br> &amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A</p>
+</blockquote>
+<p>菱形共输出2n-1行,并且对称中心为第n行.<br>将菱形的第一行和最后一行定义为”端”.第i行到”端”的距离k为该行与距离该行较近的端之间的距离:<br>当i&lt;n时,k为该行到第一行的距离<br>当i&gt;n时,k为该行到最后一行的距离<br>第i行到对称中心的距离为abs(i-n),则该行到”端”的距离k&#x3D;n-abs(i-n).<br>每一行输出的内容与k有关:<br>第i的输出内容为金字塔图案中第k行输出的内容<br>因此将k取代上面代码中外层循环体中的i即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j, k, l;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        k = n - <span class="built_in">abs</span>(i - n);</span><br><span class="line">        <span class="comment">// 使用k取代i</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - k ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * k - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + k - <span class="number">1</span> - <span class="built_in">abs</span>(j - k));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/" rel="prev" title="无处不在的抉择之选择控制结构">
+                  <i class="fa fa-chevron-left"></i> 无处不在的抉择之选择控制结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa-thin fa-teddy-bear"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vellichor</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">20k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18 分钟</span>
+  </span>
+</div>
+
+<!--
+  "<div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>-->
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
