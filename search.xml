@@ -24,7 +24,7 @@
 </li>
 <li><p>for语句<br>  基本形式:</p>
   <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(expr1; expr2; expr3)</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  e.g</p>
+
 <p>  括号中包括三个表达式,它们之间用分号隔开,这三个表达式均可省略.</p>
 <ul>
 <li>表达式1仅在循环开始时执行一次初始化</li>
@@ -80,10 +80,10 @@
   <blockquote>5</blockquote>
 
 <p>  样例输出(Sample Output):</p>
-  <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;ABA<br>
-  &nbsp;&nbsp;&nbsp;ABCBA<br>
-  &nbsp;&nbsp;ABCDCBA<br>
+  <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABA<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;ABCBA<br>
+  &nbsp;&nbsp;&nbsp;ABCDCBA<br>
       ABCDEDCBA</blockquote>
 
       
