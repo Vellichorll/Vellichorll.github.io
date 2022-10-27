@@ -105,7 +105,7 @@
       &nbsp;&nbsp;&nbsp;ABCDBA<br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABCBA<br>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABA<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<br>
   </blockquote>
   菱形共输出2n-1行,并且对称中心为第n行.  
 
