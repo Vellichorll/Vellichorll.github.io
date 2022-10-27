@@ -3,7 +3,7 @@
   <entry>
     <title>周而复始的艺术之循环结构(Loop Structure)</title>
     <url>/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84-Loop-Structure/</url>
-    <content><![CDATA[<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>首先思考这样一个问题：人与计算机的区别体现在哪?</p>
+    <content><![CDATA[<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>人与计算机的区别体现在哪?</p>
 <blockquote>
 <p>人类并不擅长机械地重复行动,常常因产生厌倦而出现错误,但是更擅于思考与辨识.<br>而由人类发明的计算机则擅长按照一定的规律重复执行某些过程</p>
 </blockquote>
@@ -79,33 +79,48 @@
 </ul>
 <p>   按行列处理问题</p>
 <ul>
-<li>输入一个数字n,输出相应的金字塔图案<br>  样例输入(Sample Input):<blockquote>
-<p>5</p>
-</blockquote>
-<p>  样例输出(Sample Output):</p>
-<blockquote>
-<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>  &amp;nbsp;&amp;nbsp;ABCBA<br>  &amp;nbsp;ABCDCBA<br>   ABCDEDCBA</p>
-</blockquote>
-<p>  分析:</p>
-<ul>
+<li>输入一个数字n,输出相应的金字塔图案<br>  样例输入(Sample Input):  <blockquote>5</blockquote>
+
+  样例输出(Sample Output):  <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;A<br>
+  &nbsp;&nbsp;&nbsp;ABA<br>
+  &nbsp;&nbsp;ABCBA<br>
+  &nbsp;ABCDCBA<br>
+   ABCDEDCBA</blockquote>
+
+  
+  分析:<ul>
 <li><p>外层循环表示每一行的输出:<br>先输出该行的图案,然后再输出换行符 共输出n行</p>
 </li>
 <li><p>内层循环表示当前行每一列的输出：<br> (1) 先输出空格,第i行输出n-i个空格<br> (2) 再输出字母,同一行中的所有字母都是对称的:<br> 第i行输出2*i-1个字母,第i行的对称中心为第i列,对称中心处的字母为’A’+i-1<br> 先从A开始顺序输出i个字母,再从对称中心处的字母开始逆序输出i-1个字母</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 顺序输出字母</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 逆序输出字母</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt; i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>根据对称性可将输出字母部分的代码进行简化<br>第j列的字母与其到对称中心(第i列)的距离abs(j - i)有关: 第j列应输出的字母为’A’+ i - 1 - abs(j - i)</p>
+<p>根据对称性可将输出字母部分的代码进行简化:<br>第j列的字母与其到对称中心(第i列)的距离abs(j - i)有关,第j列应输出的字母为’A’+ i - 1 - abs(j - i)</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * i - <span class="number">1</span>; j++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - <span class="built_in">abs</span>(j - i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - <span class="built_in">abs</span>(j - i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>该题可进一步升级为菱形</p>
 <p>样例输入(Sample Input):</p>
-<blockquote>
-<p>5</p>
-</blockquote>
+<blockquote>5</blockquote>
+
 <p>样例输出(Sample Output):</p>
-<blockquote>
-<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>&amp;nbsp;&amp;nbsp;ABCBA<br>&amp;nbsp;ABCDCBA<br> ABCDEDCBA<br> &amp;nbsp;ABCDBA<br> &amp;nbsp;&amp;nbsp;ABCBA<br> &amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A</p>
+<blockquote>&nbsp;&nbsp;&nbsp;&nbsp;A<br>
+&nbsp;&nbsp;&nbsp;ABA<br>
+&nbsp;&nbsp;ABCBA<br>
+&nbsp;ABCDCBA<br>
+ ABCDEDCBA<br>
+ &nbsp;ABCDBA<br>
+ &nbsp;&nbsp;ABCBA<br>
+ &nbsp;&nbsp;&nbsp;ABA<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A<br>
 </blockquote>
-<p>菱形共输出2n-1行,并且对称中心为第n行.<br>将菱形的第一行和最后一行定义为”端”.第i行到”端”的距离k为该行与距离该行较近的端之间的距离:<br>当i&lt;n时,k为该行到第一行的距离<br>当i&gt;n时,k为该行到最后一行的距离<br>第i行到对称中心的距离为abs(i-n),则该行到”端”的距离k&#x3D;n-abs(i-n).<br>每一行输出的内容与k有关:<br>第i的输出内容为金字塔图案中第k行输出的内容<br>因此将k取代上面代码中外层循环体中的i即可</p>
+菱形共输出2n-1行,并且对称中心为第n行.
+到对称中心距离相等的两行是对称的,输出相同的图案.
+若第k行与倒数第k行输出相同的图案
+则第k行和倒数第k行就相当于金字塔图案中的第k行,如何使用i描述k?
+当前行为第i行,到对称中心的距离为abs(i-n),
+其相当于第金字塔团案中的第n-abs(i - n)行
+因此k=n-abs(i-n)
+因此使用k替代金字塔图案代码中外层循环体中的i即可.
+
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j, k, l;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        k = n - <span class="built_in">abs</span>(i - n);</span><br><span class="line">        <span class="comment">// 使用k取代i</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - k ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * k - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + k - <span class="number">1</span> - <span class="built_in">abs</span>(j - k));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
