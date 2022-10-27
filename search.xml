@@ -81,10 +81,10 @@
 <ul>
 <li>输入一个数字n,输出相应的金字塔图案<br>  样例输入(Sample Input):  <blockquote>5</blockquote>
 
-  样例输出(Sample Output):  <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;A<br>
-  &nbsp;&nbsp;&nbsp;ABA<br>
-  &nbsp;&nbsp;ABCBA<br>
-  &nbsp;ABCDCBA<br>
+  样例输出(Sample Output):  <blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;ABA<br>
+  &nbsp;&nbsp;&nbsp;ABCBA<br>
+  &nbsp;&nbsp;ABCDCBA<br>
    ABCDEDCBA</blockquote>
 
   
