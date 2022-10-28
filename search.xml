@@ -9,7 +9,7 @@
 </blockquote>
 <p>编程的本质是以计算机的思维去思考和解决问题,然后借助编程语言实现.而计算机的思维方式不同于人类,其中最能体现计算机的思维方式的就是循环.</p>
 <h3 id="循环控制结构"><a href="#循环控制结构" class="headerlink" title="循环控制结构"></a>循环控制结构</h3><p>  根据循环次数是否确定可将循环分为计数控制的循环和条件控制的循环.不管是哪种循环,其本质就是在满足特定条件的前提下,重复地执行某一过程.而循环的具体实现需要借助循环控制结构.</p>
-<p>C语言提供三种循环语句实现循环结构.循环语句在满足循环条件的前提下,会重复执行若干条语句,这些语句使用花括号&quot;包裹”,构成循环体.</p>
+<p>C语言提供三种循环语句实现循环结构.<br>循环语句在满足循环条件的前提下,会重复执行若干条语句,这些语句使用花括号&quot;包裹”,构成循环体.</p>
 <ul>
 <li><p>while语句<br>  基本形式为:</p>
   <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(expression)</span><br><span class="line">&#123;</span><br><span class="line">    statements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
