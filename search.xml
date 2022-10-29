@@ -1,137 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>无处不在的抉择之选择控制结构</title>
-    <url>/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/</url>
-    <content><![CDATA[<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>实际问题中需要根据情况的不同选择相应的处理方法,例如:</p>
-<ul>
-<li><p>购物的满减优惠活动</p>
-</li>
-<li><p>根据收入水平进行纳税</p>
-</li>
-<li><p>根据判别式求一元二次方程的根</p>
-</li>
-</ul>
-<p>类似上述需要进行”分类讨论”的情形,即为选择控制结构所适用的场景.<br>对这些需分情况处理的问题进行抽象,首先要描述<strong>判断条件(condition)</strong>,然后使用分支选择结构根据判断条件对不同的情况进行相应处理.</p>
-<h4 id="判断条件的表达"><a href="#判断条件的表达" class="headerlink" title="判断条件的表达"></a>判断条件的表达</h4><ul>
-<li><p>C语言使用 <strong>表达式(Expression)</strong> 对判断条件进行描述.<br>  具体而言:  </p>
-<ul>
-<li>对于简单的条件,使用关系表达式(Relation Expression)进行描述  </li>
-<li>对于复杂的条件,使用逻辑表达式(Logical Expression)进行描述</li>
-</ul>
-<p>关系表达式和逻辑表达式之间的关系:</p>
-<blockquote>
-<p>通过逻辑运算符连接若干个关系表达式或者逻辑条件形成逻辑表达式</p>
-</blockquote>
-<p>  以上两种表达式的取值只有两种:&quot;真&quot;(true)和&quot;假&quot;(false).C语言的基本数据类型中不包括布尔(bool)类型,而是使用非0值表示&quot;真&quot;,使用0值表示&quot;假&quot;</p>
-</li>
-<li><p>关系表达式<br>关系表达式由关系运算符和操作数(oprand)组成</p>
-<ul>
-<li>关系运算符即比较运算符.<br> C语言中的关系运算符：<table>
-<caption>C语言中的关系运算符</caption>
-<tr align="center">
-    <th>符号</th><th>含义</th><th>优先级</th>
-</tr>
-<tr align="center">
-    <td align="center"> < </td><td>小于</td><td rowspan="4">高</td>
-</tr>
-<tr align="center">
-    <td> <= </td><td>小于等于</td>
-</tr>
-<tr align="center">
-    <td> > </td><td>大于</td>
-</tr>
-<tr align="center">
-    <td> >= </td><td>大于等于</td>
-</tr>
-<tr align="center">
-    <td> == </td> <td>等于</td> <td rowspan="2">低</td>
-</tr>
-<tr align="center">
-    <td>!=</td><td>不等于</td>
-</tr>
-</table></li>
-<li>操作数包括常量、变量和表达式</li>
-</ul>
-</li>
-<li><p>逻辑表达式<br>逻辑表达式由逻辑运算符和操作数组成</p>
-<ul>
-<li>逻辑运算符<br>包括逻辑与(and)、逻辑或(or)、逻辑非(not). <table>
- <caption>C语言中的逻辑运算符</caption>
-<tr align="center">
-    <th>符号</th><th>类型</th><th>含义 </th><th>结合性</th><th>优先级</th>
-</tr>
-<tr align="center">
-    <td> ! </td><td>单目运算符</td> <td>逻辑非</td><td>右结合(从右到左)</td><td>最高</td>
-</tr>
-<tr align="center">
-    <td align> && </td><td>双目运算符</td><td>逻辑与</td><td>左结合(从左到右)</td><td>较高</td>
-</tr>
-<tr align="center">
-    <td> || </td><td>双目运算符</td><td>逻辑或</td><td>左结合(从左到右)</td><td>较低</td>
-</table>
-
-其中双目运算符&quot;&amp;&amp;&quot;和&quot;||&quot;具有<u>&quot;短路特性&quot;</u>:  若表达式的值可由先计算的左操作数单独推导,则不再计算右操作数的值.<ul>
-<li>运算符&amp;&amp;左侧操作数的值为&quot;假&quot;时,不再计算右侧的操作数的值<br>运算符&amp;&amp;左侧操作数的值为&quot;真&quot;时,才计算右侧的操作数的值</li>
-<li>运算符||左侧操作数的值为&quot;真&quot;时,不再计算右侧操作数的值<br>运算符||左侧操作数的值为&quot;假&quot;时,才计算右侧的操作数的值</li>
-</ul>
-<p> 短路特性的应用:</p>
-<ul>
-<li>运算符&amp;&amp;左侧的条件可作为前提条件<br>例如确保除数不为0<br>i !&#x3D; 0 &amp;&amp; j % i &#x3D;&#x3D; 0</li>
-</ul>
-</li>
-<li>操作数包括关系表达式和逻辑变量<br>C语言中用整型变量表示逻辑变量.变量值为非0表示&quot;真&quot;,0表示&quot;假&quot;</li>
-</ul>
-</li>
-</ul>
-<h4 id="选择控制结构"><a href="#选择控制结构" class="headerlink" title="选择控制结构"></a>选择控制结构</h4><p>  根据需要处理情况的数量确定分支的数目,分支结构可分为:</p>
-<ul>
-<li><p>单分支选择结构</p>
-  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//statements</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  表示如果满足条件(condition),则执行花括号内的若干条语句(statements).<br>  由花括号括起来的若干条语句称为语句块(也称为复合语句),语句块中仅有一条语句时,花括号可省略.</p>
-<p>  e.g 若a &gt; b则交换两者的值</p>
-  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; b) </span><br><span class="line">&#123;</span><br><span class="line">    temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>tips:<br>  可使用逗号运算符可将顺序执行、逻辑相关的多条语句合并成一条语句</p>
-</blockquote>
-<p>  上述代码可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; b) temp = a, a = b, b = temp;</span><br></pre></td></tr></table></figure><br>  更高效交换两个变量的方式为使用位运算,无需借助第三个临时变量<br>  上述代码可写为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">if</span>(a &gt; b) a ^= b, b ^= a, b a ^= b;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">- 双分支选择结构</span><br><span class="line">    - <span class="keyword">if</span> <span class="keyword">else</span></span><br><span class="line">    ```cpp</span><br><span class="line">    <span class="keyword">if</span>(condition)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//statement1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//statement2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>  若满足条件condition,则执行statement1<br>  不满足条件condition,则执行statement2<br>  e.g 判断数字num是否为偶数的函数<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!(num % <span class="number">2</span>))  <span class="comment">//等价于if(num % 2 == 0)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">//if(num % 2 !=0)可写为if(num % 2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>条件表达式<br>条件表达式由条件运算符和条件表达式组成.<br>条件运算符是C语言中唯一的三目运算符,提供了一种简单if-else语句的写法.<br>条件表达式的基本形式为:<br>condition ? expr1 : expr2</p>
-<p>若满足条件condition,则条件表达式的值为expr1的值</p>
-</li>
-</ul>
-<p>否则,条件表达式的值为expr2的值<br>因此,上述函数也可写为</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (num % <span class="number">2</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实际上该函数还可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(num % <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>更为高效的方式<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(num &amp; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>多分支选择结构</p>
-<ul>
-<li><p>级联式的if语句:else-if </p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(expr1)</span><br><span class="line">&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(expr2)</span><br><span class="line">&#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(expr3)</span><br><span class="line">&#123;</span><br><span class="line">    statement3;</span><br><span class="line">&#125;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123;</span><br><span class="line">    statement_n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if else可以嵌套使用,用以进行深层次的判断</p>
-</li>
-<li><p>switch case</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(expr)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> constExpr1:</span><br><span class="line">        statement1; <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> constant2:</span><br><span class="line">        statement2; <span class="keyword">break</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> constExpr_n:</span><br><span class="line">        statement_n; <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>e.g<br>根据运算符op对num1和num2进行运算并输出结果</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">calc</span><span class="params">(<span class="type">char</span> op, <span class="type">int</span> num1, <span class="type">int</span> num2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(op)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, num2, num + num2); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, num2, num - num2); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, num2, num * num2); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">            <span class="keyword">if</span>(!num2)  <span class="comment">//除数num2为0</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Divison by zero\n&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, num2, num / num2); <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>switch case语句由if else语句演化而来,其可以更清晰地表达选择分支结构.同时也可与if else嵌套使用<br>case后面的值必须为常量,因此具有一点的局限性.<br>注意事项：</p>
-<ul>
-<li>switch语句块中不能定义变量,因为编译器认为这种写法会错变量定义.</li>
-<li>case语句块执行完后需使用break进行跳出,否则都将归到default的情况中处理</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>周而复始的艺术之循环结构</title>
     <url>/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84(Loop-Structure)/</url>
     <content><![CDATA[<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>人与计算机的区别体现在哪?</p>
@@ -225,10 +94,134 @@
   根据对称性可将输出字母部分的代码进行简化:<br>  第j列的字母与其到对称中心(第i列)的距离abs(j-i)有关<br>  第j列应输出的字母为&#39;A&#39;+i-1-abs(j-i)  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 输出空格</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 输出字母</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + i - <span class="number">1</span> - <span class="built_in">abs</span>(j - i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   该题可进一步升级为菱形<br>  样例输入(Sample Input):  <blockquote>5</blockquote></li>
 </ul>
-<p>  样例输出(Sample Output):<br>  <blockquote>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABCBA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;ABCDCBA<br><br>      ABCDEDCBA<br>      <br><br>      &amp;nbsp;&amp;nbsp;&amp;nbsp;ABCDBA<br><br>      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABCBA<br><br>       &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br><br>  </blockquote><br>  菱形共输出2n-1行,并且对称中心为第n行.  </p>
+<p>  样例输出(Sample Output):<br>  <blockquote>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABCBA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;ABCDCBA<br><br>  ABCDEDCBA<br>  <br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;ABCDBA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABCBA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ABA<br><br>  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;A<br><br>  </blockquote><br>  菱形共输出2n-1行,并且对称中心为第n行.  </p>
 <p>  到对称中心距离相等的两行是对称的,输出相同的图案.  </p>
 <p>  第k行和倒数第k行就相当于金字塔图案中的第k行,如何使用i描述k?<br>  当前行为第i行,到对称中心的距离为abs(i-n),其相当于第金字塔团案中的第n-abs(i - n)行,因此k&#x3D;n-abs(i-n)<br>  因此使用k替代金字塔图案代码中外层循环体中的i即可</p>
   <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j, k, l;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        k = n - <span class="built_in">abs</span>(i - n);</span><br><span class="line">        <span class="comment">// 使用k取代i</span></span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n - k ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= <span class="number">2</span> * k - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;A&#x27;</span> + k - <span class="number">1</span> - <span class="built_in">abs</span>(j - k));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无处不在的抉择之选择控制结构</title>
+    <url>/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/</url>
+    <content><![CDATA[<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>实际问题中需要根据情况的不同选择相应的处理方法,例如:</p>
+<ul>
+<li><p>购物的满减优惠活动</p>
+</li>
+<li><p>根据收入水平进行纳税</p>
+</li>
+<li><p>根据判别式求一元二次方程的根</p>
+</li>
+</ul>
+<p>类似上述需要进行”分类讨论”的情形,即为选择控制结构所适用的场景.<br>对这些需分情况处理的问题进行抽象,首先要描述<strong>判断条件(condition)</strong>,然后使用分支选择结构根据判断条件对不同的情况进行相应处理.</p>
+<h4 id="条件的表达"><a href="#条件的表达" class="headerlink" title="条件的表达"></a>条件的表达</h4><ul>
+<li><p>C语言使用 <strong>逻辑表达式(Expression)</strong> 描述判断条件.</p>
+<p>  逻辑表达式(也称布尔表达式),其取值只有两种:&quot;真和&quot;(true)&quot;假&quot;(false).C语言而是使用非0值表示&quot;真&quot;,使用0表示&quot;假.<br>  逻辑表达式由逻辑运算符和操作数(operand)组成.</p>
+<ul>
+<li>逻辑运算符<br>包括逻辑与(and)、逻辑或(or)、逻辑非(not). <table>
+ <caption>C语言中的逻辑运算符</caption>
+<tr align="center">
+    <th>符号</th><th>类型</th><th>含义 </th><th>结合性</th><th>优先级</th>
+</tr>
+<tr align="center">
+    <td> ! </td><td>单目运算符</td> <td>逻辑非</td><td>右结合(从右到左)</td><td>最高</td>
+</tr>
+<tr align="center">
+    <td align> && </td><td>双目运算符</td><td>逻辑与</td><td>左结合(从左到右)</td><td>较高</td>
+</tr>
+<tr align="center">
+    <td> || </td><td>双目运算符</td><td>逻辑或</td><td>左结合(从左到右)</td><td>较低</td>
+</table>
+
+其中双目运算符&quot;&amp;&amp;&quot;和&quot;||&quot;具有<u>&quot;短路特性&quot;</u>:  若表达式的值可由先计算的左操作数单独推导,则不再计算右操作数的值.<ul>
+<li>运算符&amp;&amp;左侧操作数的值为&quot;假&quot;时,不再计算右侧的操作数的值<br>运算符&amp;&amp;左侧操作数的值为&quot;真&quot;时,才计算右侧的操作数的值</li>
+<li>运算符||左侧操作数的值为&quot;真&quot;时,不再计算右侧操作数的值<br>运算符||左侧操作数的值为&quot;假&quot;时,才计算右侧的操作数的值</li>
+</ul>
+<p>例如下面这段代码输出为0,&quot;y &#x3D; 5&quot;这条赋值语句并未被执行</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>, z;</span><br><span class="line">z = (x == <span class="number">1</span>) &amp;&amp; (y = <span class="number">5</span>)</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, y);</span><br></pre></td></tr></table></figure>
+<p> 短路特性的应用:</p>
+<ul>
+<li>运算符&amp;&amp;左侧的条件可作为前提条件.</li>
+</ul>
+</li>
+<li>操作数包括逻辑变量和关系表达式<ul>
+<li>逻辑变量<br>C语言中通常用整型变量表示逻辑变量(也称为逻辑变量).<br>非0值表示&quot;真&quot;,0表示&quot;假&quot;.<br>其实C语言也提供了布尔类型,其关键字为_Bool,其值为true或false(本质上也是int,因为用1表示&quot;真”,0表示&quot;假”)</li>
+<li>关系表达式<br>关系表达式由关系运算符和操作数组成<ul>
+<li>关系运算符即比较运算符.<table>
+<caption>C语言中的关系运算符</caption>
+<tr align="center">
+    <th>符号</th><th>含义</th><th>优先级</th>
+</tr>
+<tr align="center">
+    <td align="center"> < </td><td>小于</td><td rowspan="4">高</td>
+</tr>
+<tr align="center">
+    <td> <= </td><td>小于等于</td>
+</tr>
+<tr align="center">
+    <td> > </td><td>大于</td>
+</tr>
+<tr align="center">
+    <td> >= </td><td>大于等于</td>
+</tr>
+<tr align="center">
+    <td> == </td> <td>等于</td> <td rowspan="2">低</td>
+</tr>
+<tr align="center">
+    <td>!=</td><td>不等于</td>
+</tr>
+</table></li>
+<li>操作数包括常量、变量和表达式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="选择控制结构"><a href="#选择控制结构" class="headerlink" title="选择控制结构"></a>选择控制结构</h4><p>  根据需要处理情况的数量确定分支的数目,分支结构可分为:</p>
+<ul>
+<li><p>单分支选择结构</p>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//statements</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  表示如果满足条件(condition),则执行花括号内的若干条语句(statements).<br>  由花括号括起来的若干条语句称为语句块(也称为复合语句),语句块中仅有一条语句时,花括号可省略.</p>
+<p>  e.g 若a &gt; b则交换两者的值</p>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; b) </span><br><span class="line">&#123;</span><br><span class="line">    temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>tips:<br>  可使用逗号运算符可将顺序执行、逻辑相关的多条语句合并成一条语句</p>
+</blockquote>
+<p>  上述代码可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; b) temp = a, a = b, b = temp;</span><br></pre></td></tr></table></figure><br>  更高效交换两个变量的方式为使用位运算中的异或(^),无需借助第三个临时变量<br>  上述代码可写为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">if</span>(a &gt; b) a ^= b, b ^= a, b a ^= b;</span><br><span class="line">    </span><br><span class="line">- 双分支选择结构</span><br><span class="line">    - <span class="keyword">if</span> <span class="keyword">else</span></span><br><span class="line">    ```cpp</span><br><span class="line">    <span class="keyword">if</span>(condition)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//statement1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//statement2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>  若满足条件condition,则执行statement1<br>  不满足条件condition,则执行statement2<br>  e.g 判断数字num是否为偶数的函数<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!(num % <span class="number">2</span>))  <span class="comment">//等价于if(num % 2 == 0)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">//if(num % 2 !=0)可写为if(num % 2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>条件表达式<br>条件表达式由条件运算符和条件表达式组成.<br>条件运算符是C语言中唯一的三目运算符,提供了一种简单if-else语句的写法.<br>条件表达式的基本形式为:<br>condition ? expr1 : expr2</p>
+<p>若满足条件condition,则条件表达式的值为expr1的值</p>
+</li>
+</ul>
+<p>否则,条件表达式的值为expr2的值<br>因此,上述函数也可写为</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (num % <span class="number">2</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际上该函数还可简化为<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(num % <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>更为高效的方式：使用位运算中的与(&amp;)<br>  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(num &amp; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>多分支选择结构</p>
+<ul>
+<li><p>级联式的if语句:else-if </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(expr1)</span><br><span class="line">&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(expr2)</span><br><span class="line">&#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(expr3)</span><br><span class="line">&#123;</span><br><span class="line">    statement3;</span><br><span class="line">&#125;</span><br><span class="line">......</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123;</span><br><span class="line">    statement_n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if else可以嵌套使用,用以进行深层次的判断.</p>
+</li>
+<li><p>switch case</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(expr)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> const1:</span><br><span class="line">        statement1; <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> const2:</span><br><span class="line">        statement2; <span class="keyword">break</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> const_n:</span><br><span class="line">        statement_n; <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>switch case语句由if else语句演化而来,其可以更清晰地表达选择分支结构.同时也可与if else嵌套使用<br>case后面的值必须为常量,因此具有一点的局限性.<br>注意事项：</p>
+<ul>
+<li>switch语句块中不能定义变量,因为编译器认为这种写法会错变量定义.</li>
+<li>case语句块执行完后需使用break进行跳出,否则都将归到default的情况中处理</li>
+</ul>
+<p>e.g<br>根据运算符opr对num1和num2进行运算并输出结果</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(opr)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, opr, num2, num + num2); <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, opr, num2, num - num2); <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, opr, num2, num * num2); <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span>(!num2)  <span class="comment">//除数num2为0</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Divison by zero\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %c %d = %d\n&quot;</span>, num1, opr, num2, num / num2); <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
