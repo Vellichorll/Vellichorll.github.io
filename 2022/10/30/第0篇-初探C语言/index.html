@@ -20,25 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="I live an abusrd life invariably.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="山枕的博客">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="对学习的内容有一个总体性的认知,才能避免在学习过程中迷失自我. 浅谈编程 何为编程?顾名思义就是编写程序,其本质可概括为解决特定问题.而编程语言就是编写程序的”工具”,与我们平时使用的自然语言稍有不同:我们并非使用编程语言与计算机直接对话,而是借助编程语言去”指导”计算机帮助我们解决问题.编程语言作为一种工具,自然无优劣之分,只是具有各自的适应场景. 编程难在哪? 编程是将问题进行抽象后提炼出解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第0篇 初探C语言">
+<meta property="og:url" content="http://example.com/2022/10/30/%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80/index.html">
 <meta property="og:site_name" content="山枕的博客">
-<meta property="og:description" content="I live an abusrd life invariably.">
+<meta property="og:description" content="对学习的内容有一个总体性的认知,才能避免在学习过程中迷失自我. 浅谈编程 何为编程?顾名思义就是编写程序,其本质可概括为解决特定问题.而编程语言就是编写程序的”工具”,与我们平时使用的自然语言稍有不同:我们并非使用编程语言与计算机直接对话,而是借助编程语言去”指导”计算机帮助我们解决问题.编程语言作为一种工具,自然无优劣之分,只是具有各自的适应场景. 编程难在哪? 编程是将问题进行抽象后提炼出解决">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/.%5C%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80%5Crank.png">
+<meta property="article:published_time" content="2022-10-30T07:39:48.000Z">
+<meta property="article:modified_time" content="2022-10-31T04:44:48.451Z">
 <meta property="article:author" content="Vellichor">
+<meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.%5C%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80%5Crank.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/10/30/%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2022/10/30/%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80/","path":"2022/10/30/第0篇-初探C语言/","title":"第0篇 初探C语言"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>山枕的博客</title>
+<title>第0篇 初探C语言 | 山枕的博客</title>
   
 
 
@@ -69,7 +74,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">山枕的博客</h1>
+      <p class="site-title">山枕的博客</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -128,7 +133,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -141,6 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%85%E8%B0%88%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">浅谈编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#why-C"><span class="nav-number">2.</span> <span class="nav-text">why C?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%82%9F"><span class="nav-number">3.</span> <span class="nav-text">个人感悟</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -192,16 +198,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/30/%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,13 +222,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 山枕的博客">
+      <meta itemprop="name" content="第0篇 初探C语言 | 山枕的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/30/%E7%AC%AC0%E7%AF%87-%E5%88%9D%E6%8E%A2C%E8%AF%AD%E8%A8%80/" class="post-title-link" itemprop="url">第0篇 初探C语言</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          第0篇 初探C语言
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -275,7 +282,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>对学习的内容有一个总体性的认知,才能避免在学习过程中迷失自我.</p>
+        <p>对学习的内容有一个总体性的认知,才能避免在学习过程中迷失自我.</p>
 <h3 id="浅谈编程"><a href="#浅谈编程" class="headerlink" title="浅谈编程"></a>浅谈编程</h3><ul>
 <li>何为编程?<br>顾名思义就是编写程序,其本质可概括为解决特定问题.<br>而编程语言就是编写程序的”工具”,与我们平时使用的自然语言稍有不同:我们并非使用编程语言与计算机直接对话,而是借助编程语言去”指导”计算机帮助我们解决问题.编程语言作为一种工具,自然无优劣之分,只是具有各自的适应场景.<br> 编程难在哪?<br> 编程是将问题进行抽象后提炼出解决方案,然后再用编程语言实现的过程.困难之处就在如何对问题进行抽象(也就是解决的思路),而非编程具体实现.</li>
 </ul>
@@ -293,7 +300,6 @@
 <li>学会使用搜索引擎<br>网络是最好的老师.有问题尽量提炼出重点的关键词而不是使用空泛的句子.有时候直接搜索报错信息比问别人高效太多了</li>
 </ul>
 
-      
     </div>
 
     
@@ -301,332 +307,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84(Loop-Structure)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vellichor">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="山枕的博客">
-      <meta itemprop="description" content="I live an abusrd life invariably.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 山枕的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84(Loop-Structure)/" class="post-title-link" itemprop="url">周而复始的艺术之循环结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-27 18:21:59" itemprop="dateCreated datePublished" datetime="2022-10-27T18:21:59+08:00">2022-10-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-29 21:45:09" itemprop="dateModified" datetime="2022-10-29T21:45:09+08:00">2022-10-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Programming-Language/" itemprop="url" rel="index"><span itemprop="name">Programming Language</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Loop Structure in C</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84(Loop-Structure)/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vellichor">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="山枕的博客">
-      <meta itemprop="description" content="I live an abusrd life invariably.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 山枕的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/" class="post-title-link" itemprop="url">无处不在的抉择之选择控制结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-25 14:36:03" itemprop="dateCreated datePublished" datetime="2022-10-25T14:36:03+08:00">2022-10-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-30 14:12:08" itemprop="dateModified" datetime="2022-10-30T14:12:08+08:00">2022-10-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Programming-Language/" itemprop="url" rel="index"><span itemprop="name">Programming Language</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Selection Structure in C</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/25/%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E6%8A%89%E6%8B%A9%E4%B9%8B%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84(Selection-Structure%EF%BC%89/">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/27/%E5%91%A8%E8%80%8C%E5%A4%8D%E5%A7%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84(Loop-Structure)/" rel="prev" title="周而复始的艺术之循环结构">
+                  <i class="fa fa-chevron-left"></i> 周而复始的艺术之循环结构
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/24/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vellichor">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="山枕的博客">
-      <meta itemprop="description" content="I live an abusrd life invariably.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 山枕的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/24/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/" class="post-title-link" itemprop="url">表达式求值(Expression Evaluation)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-24 04:37:41" itemprop="dateCreated datePublished" datetime="2022-10-24T04:37:41+08:00">2022-10-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-28 05:16:01" itemprop="dateModified" datetime="2022-10-28T05:16:01+08:00">2022-10-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>12k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>11 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>通过改进调度场算法实现表达式的求值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/24/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 
